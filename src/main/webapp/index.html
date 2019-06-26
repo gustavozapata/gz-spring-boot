@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/home.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <title>GZ - Spring Boot Web App</title>
 </head>
 <body>
@@ -27,15 +28,37 @@
             </section>
             <section class="main-section">
                 <article>
-                    <h2>the web app</h2>
+                    <h2>the app</h2>
+                    <p>The purpose of this web application is to put into practice what I've learned so far about Spring
+                        Boot.</p>
+                    <p>The <a class="active" href="/api">api</a> link at the top of this page contains the services and
+                        features that this web application offers.</p>
                 </article>
                 <article>
                     <h2>technologies</h2>
+                    <div class="technologies">
+                        <img id="java" src="./images/java.png" alt="Java logo">
+                        <img src="./images/spring.png" alt="Spring logo">
+                        <img id="maven" src="./images/maven.png" alt="Maven logo">
+                    </div>
                 </article>
-                    <h2>github repo</h2>
+                <h2>github repo</h2>
+                <div class="github">
+                    <img src="./images/github.png" alt="GitHub Logo">
+                    <input id="gitinput" type="text" value="https://github.com/gustavozapata/gz-spring-boot.git"
+                           readonly>
+                    <span tabindex="0" class="copy"><img src="./images/copy.svg" alt="Copy Icon"></span>
+                </div>
                 </article>
                 <article>
                     <h2>creator</h2>
+                    <div class="creator">
+                        <span class="creator-image"></span>
+                        <span class="creator-texts">
+                        <h3>GUSTAVO ZAPATA</h3>
+                        <h4><a href="https://gustavozapata.me" target="_blank" rel="noopener noreferrer">https://gustavozapata.me</a></h4>
+                        </span>
+                    </div>
                 </article>
             </section>
         </main>
@@ -44,5 +67,6 @@
         <p>SORRY, THIS WEBSITE HAS NOT FOOTER</p>
     </div>
 </div>
+<script src="./scripts/home.js"></script>
 </body>
 </html>
