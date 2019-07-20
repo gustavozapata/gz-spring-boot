@@ -1,9 +1,9 @@
-$("#gitinput").on("click", function() {
+$(".input-text").on("click", function() {
    $(this).select();
 });
 
 $(".copy").on("click", function() {
-    $("#gitinput").select();
+    $(".input-text").select();
     $(this).focus();
     document.execCommand("copy");
 });

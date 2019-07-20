@@ -1,38 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/home.css">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="css/home.css" />
+    <link rel="stylesheet" href="css/api.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <title>API - Spring Boot Web App</title>
-</head>
-<body>
-<div id="back">
-    <div class="logos">
-        <img src="./images/gz.png" alt="GZ Logo">
-        <img src="./images/spring.png" alt="Spring Logo">
-    </div>
-    <div id="page">
+  </head>
+  <body>
+    <div id="back">
+      <div class="logos">
+        <img src="./images/gz.png" alt="GZ Logo" />
+        <img src="./images/spring.png" alt="Spring Logo" />
+      </div>
+      <div id="page">
         <header>
-            <nav>
-                <ul>
-                    <li><a href="/">home</a></li>
-                    <li><a class="active" href="/api">api</a></li>
-                    <li><a href="/about">about</a></li>
-                </ul>
-            </nav>
+          <nav>
+            <ul>
+              <li><a href="/">home</a></li>
+              <li><a class="active" href="/api">api</a></li>
+              <li><a href="/about">about</a></li>
+            </ul>
+          </nav>
         </header>
         <main>
-            <section class="viewport">
-                <h1>API</h1>
-            </section>
-            <section class="main-section">
+          <section class="viewport">
+            <h1>RESTFUL<br />API</h1>
+          </section>
+          <section class="main-section">
+            <article>
+              <h2>api</h2>
+              <p>
+                Normally, APIs are used to share specific data to the public
+                and/or privately to certain people.
+              </p>
+              <p>
+                For instance, an organization that work analysing and capturing
+                weather data, might make an API where users can retrieve this
+                data and use it for their own purposes.
+              </p>
+            </article>
+            <article>
+              <h2>getting started</h2>
+              <h4>
+                <span>1.</span> Choose the API below. It can be one of the
+                public APIs or the private one.
+              </h4>
+              <div class="category">
+                <h3>public</h3>
+                <p class="info">
+                  <i
+                    >Public APIs are usually free and every type of user can
+                    request data from them</i
+                  >
+                </p>
+                <div class="apis">
+                  <button>News API</button>
+                  <span class="info"
+                    >Sample news data with heading, texts and images</span
+                  ><br />
+                  <button>Weather API</button>
+                  <span class="info"
+                    >Sample weather data with locations and temperatures</span
+                  >
+                </div>
+                <h3>private</h3>
+                <p class="info">
+                  <i
+                    >Private APIs normally required a key or token from the
+                    users</i
+                  >
+                </p>
+                <div class="apis">
+                  <button id="private">Currency API</button>
+                  <span class="info"
+                    >Sample currency data with country codes, names and currency
+                    value</span
+                  ><br />
+                </div>
+              </div>
+              <div class="key">
+                <span class="generate-key">Generate Key</span>
+                <div class="loading">
+                  <p>generating key...</p>
+                  <img src="./images/generatingkey.gif" alt="Loading gif" />
+                  <p id="key">32643dsafdasf436</p>
+                </div>
+              </div>
 
-            </section>
+              <h4><span>2.</span> Choose the type of request you're making.</h4>
+              <div class="requests">
+                <button>GET</button>
+                <span class="info">To retrieve data</span><br />
+                <button>POST</button>
+                <span class="info">To send data</span><br />
+                <button>DELETE</button>
+                <span class="info">To delete data</span>
+              </div>
+
+              <h4><span>3.</span> Copy the link of the API</h4>
+              <div class="apiurl">
+                <input
+                  class="input-text"
+                  type="text"
+                  placeholder="API URL to be copied"
+                  readonly
+                />
+                <span tabindex="0" class="copy"
+                  ><img src="./images/copy.svg" alt="Copy Icon"
+                /></span>
+              </div>
+              <h4><span>4.</span> Make the request</h4>
+              <div class="send">
+                <button>SEND</button>
+              </div>
+              <div class="response">
+                <h3>response</h3>
+              </div>
+            </article>
+          </section>
         </main>
+      </div>
+      <div class="no-footer">
+        <p>SORRY, THIS WEBSITE HAS NO FOOTER</p>
+      </div>
     </div>
-    <div class="no-footer">
-        <p>SORRY, THIS WEBSITE HAS NOT FOOTER</p>
-    </div>
-</div>
-</body>
+    <script src="./scripts/home.js"></script>
+    <script src="./scripts/api.js"></script>
+  </body>
 </html>
