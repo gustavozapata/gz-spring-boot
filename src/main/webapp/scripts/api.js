@@ -53,16 +53,15 @@ function loaded(key) {
 }
 
 function generateKey() {
-  var key = Math.random()
-    .toString(36)
-    .substr(2, 12);
-  return key;
+  return Math.random()
+      .toString(36)
+      .substr(2, 12);
 }
 
 $("#send").on("click", function() {
   if (request === "get") {
     $.get(url, function(result) {
-      $(".response textarea").val(JSON.stringify(result));
+      $(".response textarea").val(JSON.stringify(result, null, "\t"));
     });
   }
 });
@@ -71,7 +70,7 @@ $("#send").on("click", function() {
 function uuidv4() {
   return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c) {
     var r = (Math.random() * 16) | 0,
-      v = c == "x" ? r : (r & 0x3) | 0x8;
+      v = c === "x" ? r : (r & 0x3) | 0x8;
     return v.toString(16);
   });
 }

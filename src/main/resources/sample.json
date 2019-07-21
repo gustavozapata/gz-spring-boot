@@ -1,0 +1,50 @@
+[
+  {
+    "id": "1",
+    "headline": "SF heat",
+    "content": "lorem ipsum lorem ipsum lorem ipsum",
+    "imageUrl": "http://"
+  },
+  {
+    "id": "2",
+    "headline": "Colombia won WC",
+    "content": "lorem ipsum lorem ipsum lorem ipsum",
+    "imageUrl": "http://"
+  },
+  {
+    "id": "3",
+    "headline": "edge of the world",
+    "content": "lorem ipsum lorem ipsum lorem ipsum",
+    "imageUrl": "http://"
+  },
+  {
+    "id": "4",
+    "headline": "firefox number one browser",
+    "content": "lorem ipsum lorem ipsum lorem ipsum",
+    "imageUrl": "http://"
+  },
+  {
+    "id": "5",
+    "headline": "opera in furor",
+    "content": "lorem ipsum lorem ipsum lorem ipsum",
+    "imageUrl": "http://"
+  },
+  {
+    "id": "6",
+    "headline": "deportivo cali won the Libertadores",
+    "content": "lorem ipsum lorem ipsum lorem ipsum",
+    "imageUrl": "http://"
+  },
+  {
+    "id": "7",
+    "headline": "salsa became the number one genre",
+    "content": "lorem ipsum lorem ipsum lorem ipsum",
+    "imageUrl": "http://"
+  },
+  {
+    "id": "8",
+    "headline": "crawlers",
+    "content": "lorem ipsum lorem ipsum lorem ipsum",
+    "imageUrl": "http://"
+  }
+]
