@@ -55,11 +55,11 @@
                   >
                 </p>
                 <div class="apis">
-                  <button>News API</button>
+                  <button id="news">News API</button>
                   <span class="info"
                     >Sample news data with heading, texts and images</span
                   ><br />
-                  <button>Weather API</button>
+                  <button id="weather">Weather API</button>
                   <span class="info"
                     >Sample weather data with locations and temperatures</span
                   >
@@ -72,7 +72,7 @@
                   >
                 </p>
                 <div class="apis">
-                  <button id="private">Currency API</button>
+                  <button id="currency">Currency API</button>
                   <span class="info"
                     >Sample currency data with country codes, names and currency
                     value</span
@@ -84,38 +84,37 @@
                 <div class="loading">
                   <p>generating key...</p>
                   <img src="./images/generatingkey.gif" alt="Loading gif" />
-                  <p id="key">32643dsafdasf436</p>
+                  <p id="key"></p>
                 </div>
               </div>
 
               <h4><span>2.</span> Choose the type of request you're making.</h4>
               <div class="requests">
-                <button>GET</button>
+                <button id="get">GET</button>
                 <span class="info">To retrieve data</span><br />
-                <button>POST</button>
+                <button id="post">POST</button>
                 <span class="info">To send data</span><br />
-                <button>DELETE</button>
+                <button id="delete">DELETE</button>
                 <span class="info">To delete data</span>
               </div>
 
-              <h4><span>3.</span> Copy the link of the API</h4>
+              <h4><span>3.</span> Make the request</h4>
               <div class="apiurl">
                 <input
                   class="input-text"
                   type="text"
-                  placeholder="API URL to be copied"
+                  placeholder="API URL..."
                   readonly
                 />
-                <span tabindex="0" class="copy"
-                  ><img src="./images/copy.svg" alt="Copy Icon"
-                /></span>
               </div>
-              <h4><span>4.</span> Make the request</h4>
               <div class="send">
-                <button>SEND</button>
+                <button id="send">SEND</button>
               </div>
               <div class="response">
                 <h3>response</h3>
+                <textarea name="response" cols="30" rows="10" readonly>
+API response here...</textarea
+                >
               </div>
             </article>
           </section>

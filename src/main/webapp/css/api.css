@@ -29,7 +29,6 @@
 }
 .category h3 {
   margin-left: 0;
-  color: var(--azulclaro);
   margin-top: 70px;
 }
 .category h3 + .info {
@@ -100,10 +99,35 @@
   color: #00d170;
   font-size: 1.1em;
 }
+.apiurl .input-text {
+  border: 1px solid #d1d5da;
+  border-radius: 6px;
+}
 
 .send {
   text-align: center;
 }
+.send button {
+  padding: 6px 18px;
+  border-radius: 6px;
+  background-color: var(--azulclaro);
+  border: 1px solid #d1d5da;
+  color: white;
+  font-weight: 600;
+  font-size: 1em;
+  cursor: pointer;
+}
 .response {
   margin: 50px auto;
+  text-align: center;
+}
+.response h3 {
+  text-align: left;
+}
+.response textarea {
+  width: 80%;
+  border-radius: 6px;
+  border: 1px solid #d1d5da;
+  resize: none;
+  padding: 10px;
 }

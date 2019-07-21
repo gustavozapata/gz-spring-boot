@@ -123,6 +123,9 @@ p {
 section article {
   margin: 150px auto;
 }
+section article:first-child {
+  margin-top: 10px;
+}
 article p {
   font-size: 1.3em;
   font-weight: 600;
