@@ -8,6 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.*;
 
+@CrossOrigin(origins = {"http://127.0.0.1:5500"})
 @RestController
 public class ApiController {
 
@@ -30,7 +31,6 @@ public class ApiController {
     public String weather(){
         return "api.weather[{id:1, location: sf, temperature: 35}, {id:2, location: cali, temperature: 40}]";
     }
-
 
 
     @RequestMapping(value = "/api/currency/{key}", produces = {"application/json"})

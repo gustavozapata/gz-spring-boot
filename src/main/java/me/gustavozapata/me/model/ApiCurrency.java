@@ -8,15 +8,19 @@ public class ApiCurrency {
 
     @Id
     private int id;
-    private String country;
-    private String countryCode;
+    private String currencyCode;
+    private String currencyName;
+    private String currencySymbol;
     private double value;
+    private String imageUrl;
 
-    public ApiCurrency(int id, String country, String countryCode, double value) {
+    public ApiCurrency(int id, String currencyCode, String currencyName, String currencySymbol, double value, String imageUrl) {
         this.id = id;
-        this.country = country;
-        this.countryCode = countryCode;
+        this.currencyCode = currencyCode;
+        this.currencyName = currencyName;
+        this.currencySymbol = currencySymbol;
         this.value = value;
+        this.imageUrl = imageUrl;
     }
 
     public int getId() {
@@ -27,20 +31,28 @@ public class ApiCurrency {
         this.id = id;
     }
 
-    public String getCountry() {
-        return country;
+    public String getCurrencyCode() {
+        return currencyCode;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setCurrencyCode(String currencyCode) {
+        this.currencyCode = currencyCode;
     }
 
-    public String getCountryCode() {
-        return countryCode;
+    public String getCurrencyName() {
+        return currencyName;
     }
 
-    public void setCountryCode(String countryCode) {
-        this.countryCode = countryCode;
+    public void setCurrencyName(String currencyName) {
+        this.currencyName = currencyName;
+    }
+
+    public String getCurrencySymbol() {
+        return currencySymbol;
+    }
+
+    public void setCurrencySymbol(String currencySymbol) {
+        this.currencySymbol = currencySymbol;
     }
 
     public double getValue() {
@@ -49,5 +61,13 @@ public class ApiCurrency {
 
     public void setValue(double value) {
         this.value = value;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

@@ -1,3 +1,7 @@
+section article:last-child {
+  margin-bottom: 20px;
+}
+
 .copy {
   margin-top: -4px;
 }
@@ -23,8 +27,6 @@
 }
 .requests,
 .apis {
-  /*width: 280px;*/
-  /*margin: 5px auto;*/
   margin-left: 35px;
 }
 .category h3 {
@@ -43,7 +45,7 @@
   font-weight: 800;
   background-color: transparent;
   border-radius: 25px;
-  border: 1px solid rgb(190, 190, 190);
+  /* border: 1px solid rgb(190, 190, 190); */
   color: var(--azulmarino);
   outline: none;
 }
@@ -126,8 +128,74 @@
 }
 .response textarea {
   width: 80%;
+  height: 300px;
   border-radius: 6px;
   border: 1px solid #d1d5da;
   resize: none;
   padding: 10px;
+}
+
+.example {
+  margin-top: 80px;
+}
+.website {
+  width: 80%;
+  border: 1px solid #d1d5da;
+  border-radius: 10px;
+  margin: 20px auto;
+}
+.web-header {
+  text-align: center;
+}
+.web-header h3 {
+  color: var(--azuloscuro);
+  margin: 50px auto;
+}
+.web-header .currency-value p {
+  font-size: 2em;
+}
+.web-body {
+  padding: 20px;
+  margin: 30px auto 0 auto;
+  background-color: #f3f3f3;
+}
+.currency-item {
+  margin: 30px auto;
+  width: 80%;
+}
+.currency-item img {
+  width: 40px;
+  vertical-align: middle;
+}
+.currency-item span {
+  display: inline-block;
+  vertical-align: middle;
+}
+.currency-item span p {
+  display: inline;
+  margin-left: 5px;
+}
+.web-body .currency-info {
+  width: 40%;
+}
+.currency-info p:last-child {
+  color: grey;
+  font-size: 0.8em;
+}
+.currency-value {
+  margin-left: 20px;
+  text-align: left;
+}
+.currency-value p {
+  font-size: 1.7em;
+  color: var(--azuloscuro);
+}
+.no-data {
+  text-align: center;
+  color: grey;
+  margin: 100px auto;
+  font-weight: 300;
+}
+.use-data {
+  margin-top: 30px;
 }

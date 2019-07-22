@@ -15,10 +15,10 @@ public class CurrencyData implements ApiDao {
     static {
         currencyData = new HashMap<Integer, ApiCurrency>(){
             {
-                put(1, new ApiCurrency(1,"Colombia", "COP", 3995.65));
-                put(2, new ApiCurrency(2,"Spain", "ESP", 1.23));
-                put(3, new ApiCurrency(3,"United States", "USA", 1.34));
-                put(4, new ApiCurrency(4,"United Kingdom", "UK", 0.89));
+                put(1, new ApiCurrency(1,"EUR", "Euro", "&euro;", 1.1126, "./images/currency/eur.png"));
+                put(2, new ApiCurrency(2,"USD", "US Dollar", "&#36;", 1.2486, "./images/currency/usd.png"));
+                put(3, new ApiCurrency(3,"COP", "Colombian Peso", "&#36;", 3965.32, "./images/currency/cop.png"));
+                put(4, new ApiCurrency(4,"XBT", "Bitcoin", "&#8383;", 0.0001, "./images/currency/xbt.png"));
             }
         };
     }

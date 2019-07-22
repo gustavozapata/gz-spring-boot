@@ -2,6 +2,7 @@ var hasKeyGenerated = false;
 var keyInterval;
 var url = "";
 var request = "";
+var response = "";
 
 $(".category button").on("click", function(e) {
   buildUrl(e);
@@ -17,11 +18,6 @@ $(".category button").on("click", function(e) {
     $(".loading").css("visibility", "hidden");
   }
 });
-
-function buildUrl(e) {
-  url = "/api/" + e.target.id;
-  $(".input-text").val(url);
-}
 
 $(".requests button").on("click", function(e) {
   $(".requests button").removeClass("request-selected");
@@ -42,6 +38,40 @@ $(".generate-key").on("click", function() {
   }
 });
 
+$("#send").on("click", function() {
+  if (request === "get") {
+    $.get(url, function(result) {
+      response = result;
+      $(".response textarea").val(JSON.stringify(response, null, 2));
+    });
+  }
+});
+
+$("#useApi").on("click", function() {
+  var respondRender = "";
+  for (let i = 0; i < response.length; i++) {
+    respondRender +=
+      "<div class='currency-item'><img src='" +
+      response[i].imageUrl +
+      "' alt='GBP icon' /><span class='currency-info'><p>" +
+      response[i].currencyCode +
+      "</p><br /><p>" +
+      response[i].currencyName +
+      "</p></span><span class='currency-value'><p>" +
+      response[i].currencySymbol +
+      "</p><p>" +
+      response[i].value +
+      "</p></span></div>";
+  }
+  $(".web-body div").replaceWith(respondRender);
+});
+
+function buildUrl(e) {
+  url = "/api/" + e.target.id;
+
+  $(".input-text").val(url);
+}
+
 function loaded(key) {
   $(".loading p:first-child").text("a key has been generated");
   $(".loading img").css("display", "none");
@@ -54,17 +84,9 @@ function loaded(key) {
 
 function generateKey() {
   return Math.random()
-      .toString(36)
-      .substr(2, 12);
+    .toString(36)
+    .substr(2, 12);
 }
-
-$("#send").on("click", function() {
-  if (request === "get") {
-    $.get(url, function(result) {
-      $(".response textarea").val(JSON.stringify(result, null, "\t"));
-    });
-  }
-});
 
 //a more aggresive unique id
 function uuidv4() {
