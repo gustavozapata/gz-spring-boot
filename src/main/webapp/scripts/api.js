@@ -14,6 +14,7 @@ $(".category button").on("click", function(e) {
       $(".loading").css("visibility", "visible");
     }
   } else {
+    hasKeyGenerated = false;
     $(".generate-key").removeClass("generate-key-active");
     $(".loading").css("visibility", "hidden");
   }
@@ -43,17 +44,35 @@ $("#send").on("click", function() {
     $.get(url, function(result) {
       response = result;
       $(".response textarea").val(JSON.stringify(response, null, 2));
+      if (hasKeyGenerated) {
+        $(".only-currency").css("display", "block");
+        $("#titulo").text("LA MONEDA");
+      } else {
+        $(".only-currency").css("display", "none");
+        $("#titulo").text("EL TIEMPO");
+      }
     });
   }
 });
 
 $("#useApi").on("click", function() {
+  if (hasKeyGenerated) {
+    renderCurrency();
+  } else {
+    renderWeather();
+  }
+  $(this).css("pointer-events", "none");
+});
+
+function renderCurrency() {
   var respondRender = "";
   for (let i = 0; i < response.length; i++) {
     respondRender +=
       "<div class='currency-item'><img src='" +
       response[i].imageUrl +
-      "' alt='GBP icon' /><span class='currency-info'><p>" +
+      "' alt='" +
+      response[i].currencyCode +
+      " icon' /><span class='currency-info'><p>" +
       response[i].currencyCode +
       "</p><br /><p>" +
       response[i].currencyName +
@@ -64,11 +83,32 @@ $("#useApi").on("click", function() {
       "</p></span></div>";
   }
   $(".web-body div").replaceWith(respondRender);
-});
+}
+
+function renderWeather() {
+  var respondRender = "<div class='tiempo'>";
+  for (let i = 0; i < response.length; i++) {
+    respondRender +=
+      "<div class='currency-item'><img src='" +
+      response[i].imageUrl +
+      "' alt='" +
+      response[i].description +
+      " icon' /><span class='currency-info'><p>" +
+      response[i].location +
+      "</p><br /><p>" +
+      response[i].country +
+      "</p></span><span class='currency-value weather-value'><p id='degrees'>" +
+      response[i].temperature +
+      "<span id='celsius'>&deg;C</span></p><br/><p id='desc'>" +
+      response[i].description +
+      "</p></span></div>";
+  }
+  $(".web-body div").replaceWith(respondRender + "</div>");
+}
 
 function buildUrl(e) {
-  url = "/api/" + e.target.id;
-
+  // url = "/api/" + e.target.id;
+  url = "http://localhost:8080/api/" + e.target.id;
   $(".input-text").val(url);
 }
 

@@ -1,6 +1,7 @@
 package me.gustavozapata.me.dao;
 
 import me.gustavozapata.me.model.ApiCurrency;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
@@ -8,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Repository
+@Qualifier("currency")
 public class CurrencyData implements ApiDao {
 
     private static Map<Integer, ApiCurrency> currencyData;

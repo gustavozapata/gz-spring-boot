@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Collection;
 
 @Repository
-public interface ApiDao {
-    Collection<ApiCurrency> findAll();
+public interface ApiDao<T> {
+    Collection<T> findAll();
 }
