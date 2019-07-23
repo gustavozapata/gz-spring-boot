@@ -35,6 +35,11 @@ $(".requests button").on("click", function(e) {
   $(this).toggleClass("request-selected");
   request = e.target.id;
   two = true;
+  if (one && request === "post") {
+    $(".post-input").css("display", "block");
+  } else {
+    $(".post-input").css("display", "none");
+  }
 });
 
 $(".generate-key").on("click", function() {

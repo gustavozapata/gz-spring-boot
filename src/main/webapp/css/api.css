@@ -96,6 +96,15 @@ h4 {
 .loading img {
   width: 120px;
 }
+.post-body {
+  text-align: center !important;
+  margin: 10px auto 0 auto;
+}
+.apiurl .post-input {
+  display: none;
+  border: 1px solid #d1d5da;
+  border-radius: 6px;
+}
 #key {
   display: none;
   font-style: normal;
