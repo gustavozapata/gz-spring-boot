@@ -14,6 +14,10 @@ public class CurrencyData implements ApiDao {
 
     private static Map<Integer, ApiCurrency> currencyData;
 
+    public static void addElement(ApiCurrency apiCurrency){
+        currencyData.put(currencyData.size()+1, apiCurrency);
+    }
+
     static {
         currencyData = new HashMap<Integer, ApiCurrency>(){
             {

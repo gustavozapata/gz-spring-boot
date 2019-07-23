@@ -14,6 +14,10 @@ public class WeatherData implements ApiDao {
 
     private static Map<Integer, ApiWeather> weatherData;
 
+    public static void addElement(ApiWeather apiWeather){
+        weatherData.put(weatherData.size()+1, apiWeather);
+    }
+
     static {
         weatherData = new HashMap<Integer, ApiWeather>(){
             {

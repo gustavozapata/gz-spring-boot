@@ -1,6 +1,8 @@
 package me.gustavozapata.me.controller;
 
 import me.gustavozapata.me.dao.ApiDao;
+import me.gustavozapata.me.dao.CurrencyData;
+import me.gustavozapata.me.dao.WeatherData;
 import me.gustavozapata.me.model.ApiCurrency;
 import me.gustavozapata.me.model.ApiWeather;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,11 +32,20 @@ public class ApiController {
     }
 
 
-    @GetMapping(value = "/api/weather", produces = {"application/json"})
+    //WEATHER API
+    @GetMapping(value = "/api/weather")
     public Collection<ApiWeather> weather(){
         return apiWeather.findAll();
     }
 
+    @PostMapping(value = "/api/weather", consumes = {"application/json"})
+    public ApiWeather addWeather(@RequestBody ApiWeather apiWeather){
+        WeatherData.addElement(apiWeather);
+        return apiWeather;
+    }
+
+
+    //CURRENCY API
     @RequestMapping(value = "/api/currency/{key}", produces = {"application/json"})
     public Collection<ApiCurrency> currency(@PathVariable("key") String key){
         if(keys.contains(key)){
@@ -44,7 +55,8 @@ public class ApiController {
     }
 
     @PostMapping(value = "/api/currency/{key}", consumes = {"application/json"})
-    public ApiCurrency addCurrency(ApiCurrency apiCurrency){
+    public ApiCurrency addCurrency(@RequestBody ApiCurrency apiCurrency){
+        CurrencyData.addElement(apiCurrency);
         return apiCurrency;
     }
 }

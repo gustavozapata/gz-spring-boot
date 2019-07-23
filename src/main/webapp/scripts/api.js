@@ -1,22 +1,32 @@
 var hasKeyGenerated = false;
+var isPrivate = false;
 var keyInterval;
 var url = "";
+var key = "";
 var request = "";
 var response = "";
+var one = false;
+var two = false;
+var three = false;
+var postWeatherDone = false;
+var postCurrencyDone = false;
 
-$(".category button").on("click", function(e) {
+$("#weather").on("click", function(e) {
   buildUrl(e);
-  $(".category button").removeClass("category-selected");
+  isPrivate = false;
   $(this).toggleClass("category-selected");
-  if (e.target.id === "currency") {
-    $(".generate-key").addClass("generate-key-active");
-    if (hasKeyGenerated) {
-      $(".loading").css("visibility", "visible");
-    }
-  } else {
-    hasKeyGenerated = false;
-    $(".generate-key").removeClass("generate-key-active");
-    $(".loading").css("visibility", "hidden");
+  $(".generate-key").removeClass("generate-key-active");
+  $(".loading").css("visibility", "hidden");
+});
+
+$("#currency").on("click", function(e) {
+  buildUrl(e);
+  isPrivate = true;
+  $(this).toggleClass("category-selected");
+  $(".generate-key").addClass("generate-key-active");
+  if (hasKeyGenerated) {
+    $(".loading").css("visibility", "visible");
+    $(".input-text").val((url += "/" + key));
   }
 });
 
@@ -24,6 +34,7 @@ $(".requests button").on("click", function(e) {
   $(".requests button").removeClass("request-selected");
   $(this).toggleClass("request-selected");
   request = e.target.id;
+  two = true;
 });
 
 $(".generate-key").on("click", function() {
@@ -31,7 +42,7 @@ $(".generate-key").on("click", function() {
   if (!hasKeyGenerated) {
     $(".loading").css("visibility", "visible");
     hasKeyGenerated = true;
-    var key = generateKey();
+    key = generateKey();
     key = "u7asdfkjc23";
     keyInterval = setInterval(function() {
       loaded(key);
@@ -40,29 +51,92 @@ $(".generate-key").on("click", function() {
 });
 
 $("#send").on("click", function() {
-  if (request === "get") {
-    $.get(url, function(result) {
-      response = result;
-      $(".response textarea").val(JSON.stringify(response, null, 2));
-      if (hasKeyGenerated) {
-        $(".only-currency").css("display", "block");
-        $("#titulo").text("LA MONEDA");
+  if (one && two) {
+    if (request === "get") {
+      $.get(url, function(result) {
+        response = result;
+        $(".response textarea").val(JSON.stringify(response, null, 2));
+        if (isPrivate) {
+          $(".only-currency").css("display", "block");
+          $("#titulo").text("LA MONEDA");
+        } else {
+          $(".only-currency").css("display", "none");
+          $("#titulo").text("EL TIEMPO");
+        }
+      });
+      three = true;
+      $(".web-body div").html('<p class="no-data"><i>no data...</i></p>');
+      $("#useApi").css("pointer-events", "all");
+    } else if (request === "post") {
+      if (!postWeatherDone) {
+        postWeather();
+      } else if (!postCurrencyDone) {
+        postCurrency();
       } else {
-        $(".only-currency").css("display", "none");
-        $("#titulo").text("EL TIEMPO");
+        $(".response textarea").val(
+          "Post request: success. Make a 'Get' request to see the result."
+        );
       }
-    });
+    }
   }
 });
 
 $("#useApi").on("click", function() {
-  if (hasKeyGenerated) {
-    renderCurrency();
-  } else {
-    renderWeather();
+  if (three) {
+    if (isPrivate) {
+      renderCurrency();
+    } else {
+      renderWeather();
+    }
+    $(this).css("pointer-events", "none");
   }
-  $(this).css("pointer-events", "none");
 });
+
+function postCurrency() {
+  var dataPost = {
+    id: 5,
+    currencyCode: "AUD",
+    currencyName: "Australian Dollar",
+    currencySymbol: "&#36;",
+    value: 1.7709,
+    imageUrl: "./images/currency/aud.png"
+  };
+  $.ajax({
+    url: url,
+    data: JSON.stringify(dataPost),
+    contentType: "application/json",
+    type: "POST",
+    success: function(result, status) {
+      $(".response textarea").val(
+        "Post request: " + status + ". Make a 'Get' request to see the result."
+      );
+      postCurrencyDone = true;
+    }
+  });
+}
+
+function postWeather() {
+  var dataPost = {
+    id: 5,
+    location: "Dunedin",
+    country: "New Zealand",
+    temperature: 3,
+    description: "Snow",
+    imageUrl: "./images/weather/snow.png"
+  };
+  $.ajax({
+    url: url,
+    data: JSON.stringify(dataPost),
+    contentType: "application/json",
+    type: "POST",
+    success: function(result, status) {
+      $(".response textarea").val(
+        "Post request: " + status + ". Make a 'Get' request to see the result."
+      );
+      postWeatherDone = true;
+    }
+  });
+}
 
 function renderCurrency() {
   var respondRender = "";
@@ -82,11 +156,11 @@ function renderCurrency() {
       response[i].value +
       "</p></span></div>";
   }
-  $(".web-body div").replaceWith(respondRender);
+  $(".web-body div").html(respondRender);
 }
 
 function renderWeather() {
-  var respondRender = "<div class='tiempo'>";
+  var respondRender = "";
   for (let i = 0; i < response.length; i++) {
     respondRender +=
       "<div class='currency-item'><img src='" +
@@ -103,11 +177,12 @@ function renderWeather() {
       response[i].description +
       "</p></span></div>";
   }
-  $(".web-body div").replaceWith(respondRender + "</div>");
+  $(".web-body div").html("<div class='tiempo'>" + respondRender + "</div>");
 }
 
 function buildUrl(e) {
-  // url = "/api/" + e.target.id;
+  one = true;
+  $(".category button").removeClass("category-selected");
   url = "http://localhost:8080/api/" + e.target.id;
   $(".input-text").val(url);
 }
