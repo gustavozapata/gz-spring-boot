@@ -17,6 +17,10 @@ $("#weather").on("click", function(e) {
   $(this).toggleClass("category-selected");
   $(".generate-key").removeClass("generate-key-active");
   $(".loading").css("visibility", "hidden");
+  if (request === "post") {
+    $(".post-body").css("display", "block");
+    showPostBody();
+  }
 });
 
 $("#currency").on("click", function(e) {
@@ -27,6 +31,10 @@ $("#currency").on("click", function(e) {
   if (hasKeyGenerated) {
     $(".loading").css("visibility", "visible");
     $(".input-text").val((url += "/" + key));
+    if (request === "post") {
+      $(".post-body").css("display", "block");
+      showPostBody();
+    }
   }
 });
 
@@ -36,9 +44,10 @@ $(".requests button").on("click", function(e) {
   request = e.target.id;
   two = true;
   if (one && request === "post") {
-    $(".post-input").css("display", "block");
+    $(".post-body").css("display", "block");
+    showPostBody();
   } else {
-    $(".post-input").css("display", "none");
+    $(".post-body").css("display", "none");
   }
 });
 
@@ -73,14 +82,16 @@ $("#send").on("click", function() {
       $(".web-body div").html('<p class="no-data"><i>no data...</i></p>');
       $("#useApi").css("pointer-events", "all");
     } else if (request === "post") {
-      if (!postWeatherDone) {
-        postWeather();
-      } else if (!postCurrencyDone) {
-        postCurrency();
+      if (isPrivate) {
+        if (!postCurrencyDone) {
+          if (hasKeyGenerated) {
+            postCurrency();
+          }
+        }
       } else {
-        $(".response textarea").val(
-          "Post request: success. Make a 'Get' request to see the result."
-        );
+        if (!postWeatherDone) {
+          postWeather();
+        }
       }
     }
   }
@@ -97,15 +108,40 @@ $("#useApi").on("click", function() {
   }
 });
 
-function postCurrency() {
+function showPostBody() {
+  if (isPrivate) {
+    $(".post-textarea").val(JSON.stringify(newCurrency(), null, 2));
+  } else {
+    $(".post-textarea").val(JSON.stringify(newWeather(), null, 2));
+  }
+}
+
+function newCurrency() {
   var dataPost = {
-    id: 5,
+    id: "5",
     currencyCode: "AUD",
     currencyName: "Australian Dollar",
     currencySymbol: "&#36;",
-    value: 1.7709,
+    value: "1.7709",
     imageUrl: "./images/currency/aud.png"
   };
+  return dataPost;
+}
+
+function newWeather() {
+  var dataPost = {
+    id: "5",
+    location: "Dunedin",
+    country: "New Zealand",
+    temperature: "3",
+    description: "Snow",
+    imageUrl: "./images/weather/snow.png"
+  };
+  return dataPost;
+}
+
+function postCurrency() {
+  var dataPost = newCurrency();
   $.ajax({
     url: url,
     data: JSON.stringify(dataPost),
@@ -121,14 +157,7 @@ function postCurrency() {
 }
 
 function postWeather() {
-  var dataPost = {
-    id: 5,
-    location: "Dunedin",
-    country: "New Zealand",
-    temperature: 3,
-    description: "Snow",
-    imageUrl: "./images/weather/snow.png"
-  };
+  var dataPost = newWeather();
   $.ajax({
     url: url,
     data: JSON.stringify(dataPost),
@@ -188,7 +217,8 @@ function renderWeather() {
 function buildUrl(e) {
   one = true;
   $(".category button").removeClass("category-selected");
-  url = "http://localhost:8080/api/" + e.target.id;
+  // url = "http://localhost:8080/api/" + e.target.id;
+  url = "/api/" + e.target.id;
   $(".input-text").val(url);
 }
 
@@ -199,6 +229,10 @@ function loaded(key) {
     .css("display", "block")
     .text(key);
   $(".input-text").val((url += "/" + key));
+  if (request === "post") {
+    $(".post-body").css("display", "block");
+    showPostBody();
+  }
   clearInterval(keyInterval);
 }
 

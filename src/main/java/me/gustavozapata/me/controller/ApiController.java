@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.*;
 
-@CrossOrigin(origins = {"http://127.0.0.1:5500"})
+@CrossOrigin(origins = {"*"})
 @RestController
 public class ApiController {
 
@@ -28,12 +28,19 @@ public class ApiController {
 
     @GetMapping("/api")
     public ModelAndView api(){
+        if(CurrencyData.currencyData.size() > 4){
+            CurrencyData.removeElement(5);
+        }
+        if(WeatherData.weatherData.size() > 4){
+            WeatherData.removeElement(5);
+        }
         return new ModelAndView("api.html");
     }
 
 
     //WEATHER API
     @GetMapping(value = "/api/weather")
+    @ResponseStatus
     public Collection<ApiWeather> weather(){
         return apiWeather.findAll();
     }
@@ -55,8 +62,11 @@ public class ApiController {
     }
 
     @PostMapping(value = "/api/currency/{key}", consumes = {"application/json"})
-    public ApiCurrency addCurrency(@RequestBody ApiCurrency apiCurrency){
-        CurrencyData.addElement(apiCurrency);
-        return apiCurrency;
+    public ApiCurrency addCurrency(@RequestBody ApiCurrency apiCurrency, @PathVariable("key") String key){
+        if(keys.contains(key)){
+            CurrencyData.addElement(apiCurrency);
+            return apiCurrency;
+        }
+        return null;
     }
 }

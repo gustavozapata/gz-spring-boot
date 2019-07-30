@@ -12,6 +12,7 @@
     <artifactId>gz-spring-boot</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>gz-spring-boot</name>
+    <packaging>war</packaging>
     <description>My first Spring Boot web application</description>
 
     <properties>

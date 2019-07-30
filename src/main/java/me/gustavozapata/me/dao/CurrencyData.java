@@ -12,10 +12,14 @@ import java.util.Map;
 @Qualifier("currency")
 public class CurrencyData implements ApiDao {
 
-    private static Map<Integer, ApiCurrency> currencyData;
+    public static Map<Integer, ApiCurrency> currencyData;
 
     public static void addElement(ApiCurrency apiCurrency){
         currencyData.put(currencyData.size()+1, apiCurrency);
+    }
+
+    public static void removeElement(int id){
+        currencyData.remove(id);
     }
 
     static {

@@ -12,10 +12,14 @@ import java.util.Map;
 @Qualifier("weather")
 public class WeatherData implements ApiDao {
 
-    private static Map<Integer, ApiWeather> weatherData;
+    public static Map<Integer, ApiWeather> weatherData;
 
     public static void addElement(ApiWeather apiWeather){
         weatherData.put(weatherData.size()+1, apiWeather);
+    }
+
+    public static void removeElement(int id){
+        weatherData.remove(id);
     }
 
     static {
