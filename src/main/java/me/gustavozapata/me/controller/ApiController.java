@@ -26,7 +26,7 @@ public class ApiController {
 
     ArrayList<String> keys = new ArrayList<>(Arrays.asList("u7asdfkjc23", "ht234jkddfs", "adasfdf4g34", "4k418w9f17b"));
 
-    @GetMapping("/api")
+    @GetMapping("http://gz-spring-boot.us-east-2.elasticbeanstalk.com/api")
     public ModelAndView api(){
         if(CurrencyData.currencyData.size() > 4){
             CurrencyData.removeElement(5);
@@ -40,7 +40,6 @@ public class ApiController {
 
     //WEATHER API
     @GetMapping(value = "/api/weather")
-    @ResponseStatus
     public Collection<ApiWeather> weather(){
         return apiWeather.findAll();
     }

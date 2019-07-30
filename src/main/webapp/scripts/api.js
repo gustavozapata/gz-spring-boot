@@ -174,7 +174,7 @@ function postWeather() {
 
 function renderCurrency() {
   var respondRender = "";
-  for (let i = 0; i < response.length; i++) {
+  for (var i = 0; i < response.length; i++) {
     respondRender +=
       "<div class='currency-item'><img src='" +
       response[i].imageUrl +
@@ -195,7 +195,7 @@ function renderCurrency() {
 
 function renderWeather() {
   var respondRender = "";
-  for (let i = 0; i < response.length; i++) {
+  for (var i = 0; i < response.length; i++) {
     respondRender +=
       "<div class='currency-item'><img src='" +
       response[i].imageUrl +
@@ -217,7 +217,6 @@ function renderWeather() {
 function buildUrl(e) {
   one = true;
   $(".category button").removeClass("category-selected");
-  // url = "http://localhost:8080/api/" + e.target.id;
   url = "/api/" + e.target.id;
   $(".input-text").val(url);
 }
