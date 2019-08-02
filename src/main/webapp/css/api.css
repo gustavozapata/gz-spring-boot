@@ -253,3 +253,41 @@ h4 {
   text-align: right;
   font-size: 1.5em;
 }
+
+@media only screen and (max-width: 484px) {
+  h4 {
+    font-size: 1.5em;
+  }
+  .apiurl input {
+    margin-left: 0;
+    width: 90%;
+  }
+  .category {
+    text-align: center;
+  }
+  .apis {
+    margin-left: 0;
+  }
+  .response textarea {
+    width: 90%;
+  }
+  .website {
+    width: 98%;
+  }
+  .category h3 + .info {
+    text-align: center;
+  }
+  .key {
+    margin-top: 30px;
+  }
+  .requests {
+    text-align: center;
+    margin-left: 0;
+  }
+  .requests span {
+    margin-left: 0;
+  }
+  .requests button {
+    display: block;
+  }
+}
