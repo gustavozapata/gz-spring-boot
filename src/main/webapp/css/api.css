@@ -314,6 +314,9 @@ h4 {
   .requests button {
     display: block;
   }
+  .currency-value p {
+    font-size: 1.4em;
+  }
 }
 
 @media only screen and (max-width: 345px) {
