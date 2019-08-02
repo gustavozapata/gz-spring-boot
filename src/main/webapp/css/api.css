@@ -254,6 +254,30 @@ h4 {
   font-size: 1.5em;
 }
 
+@media only screen and (max-width: 873px) {
+  .tiempo {
+    width: 90%;
+  }
+  .web-body {
+    padding: 5px;
+  }
+}
+
+@media only screen and (max-width: 722px) {
+  .currency-item {
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 647px) {
+  .tiempo {
+    width: 98%;
+  }
+  .web-body {
+    padding: 1px;
+  }
+}
+
 @media only screen and (max-width: 484px) {
   h4 {
     font-size: 1.5em;
@@ -289,5 +313,14 @@ h4 {
   }
   .requests button {
     display: block;
+  }
+}
+
+@media only screen and (max-width: 345px) {
+  .currency-item img {
+    width: 30px;
+  }
+  .currency-value {
+    margin-left: 5px;
   }
 }
